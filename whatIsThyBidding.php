@@ -5,6 +5,10 @@
   $DEBUG = false;
 //  $DEBUG = true;
 
+  /*************************//*
+    Gets count of rows from 
+    main table
+  /*************************/
   function getCount ($conn) {
     $sql = "SELECT COUNT(id) FROM main";
     $stmt = $conn->prepare($sql);
@@ -14,7 +18,10 @@
     }
   }
 
-  // user sends offset id, need real id
+  /*************************//*
+    Converts offset based id 
+    to sql based id
+  /*************************/
   function convertId ($conn, $id) {
     $sql = "SELECT id
       FROM main
@@ -27,6 +34,10 @@
     }
   }
 
+  /*************************//*
+    Gets 'likes' data given
+    sql based id
+  /*************************/
   function getLikes ($conn, $id) {
     $sql = "SELECT likes FROM main WHERE ( id = :id )";
     $stmt = $conn->prepare($sql);
@@ -39,6 +50,10 @@
     }
   }
 
+  /*************************//*
+    Add quote to database given
+    user data
+  /*************************/
   function addquote ($conn, $body) {
     if (trim($body['author']) == '' or trim($body['quote']) == '') {
       echo "Empty strings detected.  Not cool.";
@@ -60,6 +75,13 @@
     }
   }
 
+  /*************************//*
+    Get quote, offset based id is optional
+    If given offset based id, return subsequent row
+    quote using sorted sql based id
+    If not given offset based id, returns
+    random row.
+  /*************************/
   function getquote ($conn, $id) {
     if (!is_numeric($id)) {
       $id = -100;
@@ -90,33 +112,12 @@
     }
 
   }
-/*
-  function getquote ($conn, $id) {
-    $sql = "SELECT id, author, quote, likes
-      FROM (
-        SELECT  @cnt := COUNT(*) + 1,
-                @lim := 1
-        FROM    main
-        ) vars
-      STRAIGHT_JOIN
-        (
-        SELECT  r.*,
-          @lim := @lim - 1
-        FROM    main r
-        WHERE   (@cnt := @cnt - 1)
-          AND RAND() < @lim / @cnt
-        ) i;
-        ";
 
-    $stmt = $conn->prepare($sql);
-    $result = $stmt->execute();
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    while ($row = $stmt->fetch()) {
-      echo json_encode($row);
-    }
-  }
-  */
-
+  /*************************//*
+    Increment or decrement 'likes'
+    based on offset id and
+    delta (+1 or -1, typically)
+  /*************************/
   function incdec ($conn, $id, $op) {
     if (!is_numeric($id)) {
       echo "BAD NUMBER";
@@ -142,6 +143,10 @@
     echo getLikes($conn, $id);
   }
   
+  /*************************//*
+    for caveman debugging
+  
+  /*************************/
   function debug ($str) {
     global $DEBUG;
     if ($DEBUG) {
@@ -160,6 +165,7 @@
   }
   debug("entityBody $entityBody");
   
+  // supported URL params
   $supported = [
     "dbg" => NULL,
     "getquote" => NULL,
@@ -173,6 +179,7 @@
 
   $cmd = NULL;
   $param = NULL;
+  // break once non null URL param is found
   foreach ($supported as $s => $val) {
     $val = htmlspecialchars($_GET[$s]);
     if ($val != NULL) {
@@ -183,6 +190,7 @@
   }
 
 
+  // get db info from super secret credential file
   $dbhost = 'localhost';
   $mycreds = fopen('../.creds.quotes', 'r') or die("unable to retrieve credentials");
   $dbuser = trim(fgets($mycreds));
@@ -190,6 +198,7 @@
   $dbname = trim(fgets($mycreds));
   fclose($mycreds); // clean up after yourself
   
+  // setup PDO SQL thing
   try {
     $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -199,7 +208,7 @@
 
   debug("$cmd => $param");
 
-  // is this good? 
+  // Do stuff based on non null URL param
   $sql = NULL;
   switch ($cmd) {
     case 'getquote':

@@ -1,0 +1,113 @@
+
+#quotebox-box {
+  height: 70vh;
+  position: relative;
+  /*border: 3px solid green;*/
+}
+
+#quotebox {
+  margin: 0;
+  position: fixed;
+  top: 10vh;
+  width: 90vw;
+  padding-left: 3vw;
+  /*transform: translate(-50%, 50%);*/
+  /*border: 1px solid blue;*/
+}
+
+#quote {
+  margin-top: 3vh;
+  font-size: 4.5vw;
+  font-style: italic;
+}
+
+.bg-transparent {
+  background: none;
+}
+
+.margin-all {
+  margin: 2vh 2vh 2vh 2vh;
+}
+
+.margin-top {
+  margin-top: 2vh;
+}
+
+.padding-bottom {
+  padding-bottom : 5vh;
+}
+
+.margin-bottom {
+  margin-bottom : 5vh;
+}
+
+.margin-left {
+  margin-left: 2vw;
+}
+
+.padding-left {
+  padding-left: 2vw;
+}
+
+.padding-top {
+  padding-top: 2vh;
+}
+
+.padding-right {
+  padding-right: 2vw;
+}
+
+.outline-none {
+  border: none;
+}
+
+.img-small {
+  height: 8vh;
+}
+
+.img-medium {
+  height: 10vh;
+}
+
+.author {
+  font-size: 3vw;
+  font-weight: bold;
+  margin-bottom: 3vh;
+}
+
+.outline-orange {
+  border: 1px solid orange;
+}
+
+.btn-margin {
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+}
+
+.align-right {
+  text-align: right;
+  /*width: 100%;*/
+}
+
+#likes {
+  padding-left: 3vw;
+  padding-top: 2vw;
+  text-align: start;
+}
+
+.likes {
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.vis-hidden {
+  visibility: hidden;
+}

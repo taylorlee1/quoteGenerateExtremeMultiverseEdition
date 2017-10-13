@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quote Generator Extreme Multiverse Edition</title>
+    <meta name="author" content="Taylor Lee">
+    <meta name="description" content="Quotes">
+    <meta name="keywords" content="quotes">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div id="quotebox-box">
+      <div id="quotebox" class="">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-2 ">
+              <img id="like" class="btn btn-outline-secondary img-responsive img-small" src="/thumbsup.png">
+            </div>
+            <div class="col-2 ">
+              <img id="dislike" class="btn btn-outline-warning img-responsive img-small" src="/thumbsdown.png">
+            </div>
+            <div class="col-2 ">
+              <div id="likes" class="likes"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10 ">
+              <div id="quote">
+              </div>
+              <div class="">
+                <span class="author">&mdash;</span>
+                <span id="author" class="author"></span>
+              </div>
+            </div>
+            <div class="col-2 padding-top">
+              <img id="refresh" class="btn btn-outline-primary img-responsive img-small" src="/refresh.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="row">
+        <div class="col-2 col-sm-2">
+        </div>
+        <div class="col-4 col-sm-4">
+          <img id="addnew" class="img-responsive btn btn-primary bg-transparent outline-none img-medium" src="/plus.png">
+          <div id="newQuoteForm" class="hidden">
+            <input id="newQuoteAuthor" placeholder="author"></input><br>
+            <textarea id="newQuoteText" placeholder='add a new quote!' maxlength="255" rows="10"></textarea><br>
+            <button id="newQuoteSubmit" class="btn-primary margin-all">Submit</button>
+            <button id="newQuoteCancel" class="btn-secondary margin-all">Cancel</button>
+          </div>
+        </div>
+        <div id="socialDiv" class="col-4 col-sm-4 align-right">
+          <a id="tweetLink" href=''><img class="img-responsive  btn btn-primary bg-transparent outline-none img-medium" src='/Twitter_Social_Icon_Circle_Color.png'></a>
+        </div>
+        <div class="col-2 col-sm-2">
+        </div
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+
+</html>
+
